@@ -1,0 +1,31 @@
+@import '../scss/vars';
+
+.channel-list {
+  width: 240px;
+  height: 100%;
+  background: $background-2;
+  box-shadow: $shadow-0;
+
+  .channel {
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    padding: 0 5px 0 7px;
+    cursor: pointer;
+
+    &:hover {
+      background: $background-3;
+    }
+
+    .icon {
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+      margin: 5px 0;
+
+      path {
+        fill: $accent-2;
+      }
+    }
+  }
+}

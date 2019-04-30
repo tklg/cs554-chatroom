@@ -5,11 +5,12 @@
   padding: 0;
   height: 40px;
   line-height: 40px;
+  margin: 5px 0;
   width: 40px;
   background: transparent;
   border: none;
   outline: none;
-  border-radius: 50%;
+  border-radius: 8px;
   transition: background 0.2s $transition,
               box-shadow 0.2s $transition;
   cursor: pointer;

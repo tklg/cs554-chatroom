@@ -24,10 +24,12 @@
     word-break: break-word;
 
     .file {
-      color: red;
+      color: tomato;
+      font-weight: bold;
     }
     .line {
-      color: blue;
+      color: steelblue;
+      font-weight: bold;
     }
   }
 }

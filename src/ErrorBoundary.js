@@ -25,7 +25,7 @@ export default class ErrorBoundary extends React.Component {
   render () {
     if (this.state.error !== null && process.env.NODE_ENV === 'development') {
       // You can render any custom fallback UI
-      const str = this.state.error.stack.replace(/webpack:\/\/\//g, '').replace(/\/([^/]+?\.js)\?:(\d+):(\d+)/g, `/<span class='file'>$1</span> on <span class='line'>line $2</span> ($2:$3)`)
+      const str = this.state.error.stack.replace(/webpack:\/\/\//g, '').replace(/\/([^/]+?\.js)\?:(\d+):(\d+)/g, `/<span class='file'>$1</span> on <span class='line'>line $2</span> (L$2:C$3)`)
       return (
         <div className='_errorboundary flex flex-container flex-vertical'>
           <header>
