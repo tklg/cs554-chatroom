@@ -11,19 +11,19 @@ const initialState = {
   messages: {
     '0': [{
       user: '1',
-      content: 'Test message\nline',
+      content: 'Test message\n```line\n2```',
       timestamp: 1556727762060
     }, {
       user: '0',
-      content: 'Test message 2',
+      content: '*Test* **message** ***2*** ~~strikethrough~~ __underline__',
       timestamp: 1556723762060
     }, {
       user: '0',
-      content: 'Test message group',
+      content: '`Test message group`',
       timestamp: 1556723162060
     }, {
       user: '1',
-      content: 'Test message 3',
+      content: `test invite to private channel ${window.location.origin}/i/abcdef aaaa`,
       timestamp: 1553723762060
     }],
     '1': []

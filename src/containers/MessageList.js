@@ -26,9 +26,7 @@ class MessageList extends React.Component {
   }
   getMessage ({ index, key, style, parent }) {
     const message = this.props.messages[index]
-    console.log(message)
     return (<CellMeasurer
-      cellRenderer={this.getMessage}
       columnIndex={0}
       rowIndex={index}
       key={key}
@@ -55,7 +53,7 @@ class MessageList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ rooms, user, router }) => {
+const mapStateToProps = ({ rooms, user, router }, dispatch) => {
   const active = router.location.pathname.split('/')[2]
   return {
     channels: rooms.channels,
@@ -66,12 +64,13 @@ const mapStateToProps = ({ rooms, user, router }) => {
       } else { // add message from other user to list
         const item = {
           ...x,
-          user: user.users[x.user],
+          user: user.users[x.user] || { name: 'loading...' },
           userID: x.user,
           timestamp: moment(x.timestamp).fromNowOrDate(),
           messages: [x.content]
         }
         delete item.content
+        // if (!user.users[x.user]) dispatch(fetchUser(x.user))
         a.push(item)
       }
       return a

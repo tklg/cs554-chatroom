@@ -16,6 +16,7 @@
     "moment": "^2.24.0",
     "react-router-dom": "^5.0.0",
     "react-virtualized": "^9.21.0",
+    "simple-markdown": "^0.4.4",
     "uuid": "^3.3.2"
   },
   "devDependencies": {

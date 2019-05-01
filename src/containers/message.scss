@@ -22,10 +22,51 @@
     margin-left: 8px;
   }
 
-  p {
+  .p {
     margin: 4px 0 0 0;
     color: $black-2;
     line-height: 20px;
     white-space: pre;
+
+    a {
+      color: $accent-3;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    code {
+      background: $black-5;
+      padding: 4px 6px;
+      border-radius: 4px;
+    }
+    pre {
+      background: $black-5;
+      padding: 4px 6px;
+      border-radius: 4px;
+
+      code {
+        background: initial;
+        padding: initial;
+        border-radius: initial;
+      }
+    }
+    .underline {
+      text-decoration: underline;
+    }
+    .invite {
+      display: block;
+      background: $black-5;
+      width: 400px;
+      padding: 12px;
+      border-radius: 4px;
+      margin: 10px 0;
+
+      h1 {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+      }
+    }
   }
 }
