@@ -37,8 +37,7 @@ class ChannelList extends React.Component {
 
 const mapStateToProps = ({ rooms }) => {
   return {
-    channels: rooms.channels,
-    activeChannel: rooms.active
+    channels: rooms.channels
   }
 }
 

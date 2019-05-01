@@ -48,4 +48,34 @@
       }
     }
   }
+  .left-nav {
+    background: $background-2;
+    box-shadow: $shadow-0;
+    z-index: 200;
+  }
+  .user-info {
+    min-height: 64px;
+    border-top: 1px solid $black-4;
+
+    div {
+      padding: 12px 12px;
+
+      a {
+        color: $accent-3;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+      span,
+      a {
+        display: inline-block;
+        line-height: 20px;
+      }
+    }
+    .button {
+      margin: 12px 10px;
+    }
+  }
 }

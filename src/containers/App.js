@@ -38,7 +38,16 @@ class App extends React.Component {
       <main className='flex flex-container flex-vertical'>
         <Progress working={this.props.working} />
         <div className='flex flex-container'>
-          <ChannelList />
+          <div className='flex-container flex-vertical left-nav'>
+            <ChannelList />
+            <div className='user-info flex-container'>
+              <div className='flex flex-container flex-vertical'>
+                <span className='name'>{this.props.user.name}</span>
+                <a href='/logout'>Log out</a>
+              </div>
+              <IconButton icon='settings' />
+            </div>
+          </div>
           <Channel />
         </div>
       </main>
@@ -46,10 +55,11 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ app, rooms }) => {
+const mapStateToProps = ({ app, rooms, user }) => {
   return {
     ...app,
-    channels: rooms.channels
+    channels: rooms.channels,
+    user: user.self
   }
 }
 

@@ -1,5 +1,6 @@
 dependencies:
   connected-react-router: 6.4.0
+  moment: 2.24.0
   react-router-dom: 5.0.0
   react-virtualized: 9.21.0
   uuid: 3.3.2
@@ -3980,6 +3981,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
+  /moment/2.24.0:
+    dev: false
+    resolution:
+      integrity: sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
   /move-concurrently/1.0.1:
     dependencies:
       aproba: 1.2.0
@@ -6480,6 +6485,7 @@ specifiers:
   css-loader: ^2.1.0
   html-webpack-plugin: ^3.2.0
   mini-css-extract-plugin: ^0.5.0
+  moment: ^2.24.0
   node-sass: ^4.11.0
   npm-run-all: ^4.1.5
   react: ^16.7.0
