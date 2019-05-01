@@ -1,6 +1,9 @@
 @import '../scss/vars';
 
 .channel {
+  background: white;
+  z-index: 100;
+
   .channel-footer {
     min-height: 60px;
     border-top: 1px solid $black-5;

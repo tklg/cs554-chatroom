@@ -5,16 +5,23 @@
   height: 100%;
   background: $background-2;
   box-shadow: $shadow-0;
+  padding: 12px 0;
+  z-index: 200;
 
-  .channel {
+  .channel-item {
     height: 40px;
     width: 100%;
     line-height: 40px;
     padding: 0 5px 0 7px;
     cursor: pointer;
+    color: $black-1;
+    text-decoration: none;
 
-    &:hover {
-      background: $background-3;
+    &:not(.active):hover {
+      background: $black-5;
+    }
+    &.active {
+      background: $black-4;
     }
 
     .icon {
@@ -24,7 +31,7 @@
       margin: 5px 0;
 
       path {
-        fill: $accent-2;
+        fill: $black-3;
       }
     }
   }

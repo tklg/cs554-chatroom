@@ -6,7 +6,8 @@ const initialState = {
   }, {
     id: '1',
     name: 'Channel 2'
-  }]
+  }],
+  active: '0'
 }
 
 export default function (state = initialState, { type, data }) {

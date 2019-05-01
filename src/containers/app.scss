@@ -23,6 +23,17 @@
     h2 {
       font-size: 1.1rem;
       color: $black-2;
+
+      .icon.pound {
+        height: 34px;
+        width: 34px;
+        line-height: 34px;
+        margin: 8px 0;
+
+        path {
+          fill: $black-4;
+        }
+      }
     }
     .connection {
       display: inline-block;

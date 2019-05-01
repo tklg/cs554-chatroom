@@ -12,6 +12,7 @@
   "author": "Theodore Kluge",
   "license": "ISC",
   "dependencies": {
+    "connected-react-router": "^6.4.0",
     "react-router-dom": "^5.0.0",
     "react-virtualized": "^9.21.0",
     "uuid": "^3.3.2"

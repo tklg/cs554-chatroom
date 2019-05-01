@@ -1,4 +1,5 @@
 dependencies:
+  connected-react-router: 6.4.0
   react-router-dom: 5.0.0
   react-virtualized: 9.21.0
   uuid: 3.3.2
@@ -1710,6 +1711,20 @@ packages:
       node: '>=0.8'
     resolution:
       integrity: sha512-e54B99q/OUoH64zYYRf3HBP5z24G38h5D3qXu23JGRoigpX5Ss4r9ZnDk3g0Z8uQC2x2lPaJ+UlWBc1ZWBWdLg==
+  /connected-react-router/6.4.0:
+    dependencies:
+      immutable: 3.8.2
+      prop-types: 15.7.2
+      seamless-immutable: 7.1.4
+    dev: false
+    peerDependencies:
+      history: ^4.7.2
+      react: ^16.4.0
+      react-redux: ^6.0.0
+      react-router: ^4.3.1 || ^5.0.0
+      redux: ^3.6.0 || ^4.0.0
+    resolution:
+      integrity: sha512-RZRLD7qUz9OdmCn0JkW7pOiUsR7v9NtqnYKfqrxXsfO2ozMLR2/MjHaSPpdbMr4VE5TY6MwzAXUSkheN2ldqug==
   /console-browserify/1.1.0:
     dependencies:
       date-now: 0.1.4
@@ -3119,6 +3134,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-xg7taebY/bazEEofy8ocGS3FtQE=
+  /immutable/3.8.2:
+    dev: false
+    engines:
+      node: '>=0.10.0'
+    resolution:
+      integrity: sha1-wkOZUUVbs5kT2vKBN28VMOEErfM=
   /import-local/2.0.0:
     dependencies:
       pkg-dir: 3.0.0
@@ -5259,6 +5280,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-jrBtualyMzOCTT9VMGQRSYR85dE=
+  /seamless-immutable/7.1.4:
+    dev: false
+    resolution:
+      integrity: sha512-XiUO1QP4ki4E2PHegiGAlu6r82o5A+6tRh7IkGGTVg/h+UoeX4nFBeCGPOhb4CYjvkqsfm/TUtvOMYC1xmV30A==
   /select-hose/2.0.0:
     dev: true
     resolution:
@@ -6451,6 +6476,7 @@ specifiers:
   '@babel/preset-env': ^7.2.3
   '@babel/preset-react': ^7.0.0
   babel-loader: ^8.0.5
+  connected-react-router: ^6.4.0
   css-loader: ^2.1.0
   html-webpack-plugin: ^3.2.0
   mini-css-extract-plugin: ^0.5.0

@@ -7,6 +7,7 @@ import Progress from '../components/Progress'
 import ChannelList from './ChannelList'
 import Channel from './Channel'
 import IconButton from '../components/IconButton'
+import Icon from '../components/Icon'
 import './app.scss'
 
 class App extends React.Component {
@@ -14,6 +15,9 @@ class App extends React.Component {
     if (!this.props.connected) this.props.dispatch(connectSocket())
   }
   render () {
+    const activeChannelID = this.props.match.url.replace('/channels/', '')
+    const activeChannel = this.props.channels.find(x => x.id === activeChannelID)
+
     return <div className='app flex flex-container flex-vertical'>
       <header className='header flex-container'>
         <h1 className='logo room-name flex-container'>
@@ -21,7 +25,10 @@ class App extends React.Component {
           <IconButton icon='add' />
         </h1>
         <h2 className='channel-name flex flex-container'>
-          <span className='flex'>#channel</span>
+          <span className='flex flex-container'>
+            <Icon icon='pound' className='pound' />
+            <span className='flex'>{activeChannel.name}</span>
+          </span>
           <nav>
             <IconButton icon='account-plus' />
           </nav>
@@ -39,9 +46,10 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ app }) => {
+const mapStateToProps = ({ app, rooms }) => {
   return {
-    ...app
+    ...app,
+    channels: rooms.channels
   }
 }
 
