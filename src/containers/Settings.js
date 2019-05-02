@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Progress from '../components/Progress'
 import IconButton from '../components/IconButton'
 import UnderlineInput from '../components/UnderlineInput'
+import { saveUser } from '../actions'
 
 import './settings.scss'
 
@@ -75,7 +76,7 @@ class Settings extends React.Component {
               onChange={e => this.setValue('oldPassword', e.target.value)} />
 
             <div className='buttons'>
-              <button className='btn'>Save</button>
+              <button className='btn' onClick={e => this.props.dispatch(saveUser(this.state))}>Save</button>
             </div>
           </div>
         </div>

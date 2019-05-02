@@ -72,6 +72,19 @@ export const load = () => async (dispatch, getState) => {
   }
 }
 
+export const saveUser = user => async (dispatch, getState) => {
+  try {
+    dispatch(setWorking(true))
+    await Ajax.post(getUrl(`me`), {
+      data: user
+    })
+  } catch (e) {
+
+  } finally {
+    dispatch(setWorking(false))
+  }
+}
+
 export const sendMessage = (channel, message) => async (dispatch, getState) => {
   socket.emit('message.send', { channel, message }, (response) => {
     

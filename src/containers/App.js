@@ -8,6 +8,7 @@ import ChannelList from './ChannelList'
 import Channel from './Channel'
 import IconButton from '../components/IconButton'
 import InviteModal from './InviteModal'
+import ChannelCreateModal from './ChannelCreateModal'
 import Icon from '../components/Icon'
 import './app.scss'
 
@@ -20,10 +21,13 @@ class App extends React.Component {
     const activeChannel = this.props.channels.find(x => x.id === activeChannelID)
 
     return <div className='app flex flex-container flex-vertical'>
+      <div className={'connection-issue' + (this.props.connected ? '' : ' active')}>
+        Could not connect to server. Trying again...
+      </div>
       <header className='header flex-container'>
         <h1 className='logo room-name flex-container'>
           <span className='flex'>Chatroom</span>
-          <IconButton icon='add' />
+          <IconButton icon='add' onClick={e => this.props.dispatch(setValue('channelCreateModal', {}))} />
         </h1>
         <h2 className='channel-name flex flex-container'>
           <span className='flex flex-container'>
@@ -34,7 +38,6 @@ class App extends React.Component {
             <IconButton icon='account-plus' onClick={e => this.props.dispatch(setValue('inviteModal', {}))} />
           </nav>
         </h2>
-        <span className={'connection' + (this.props.connected ? '' : ' red')} />
       </header>
       <main className='flex flex-container flex-vertical'>
         <Progress working={this.props.working} />
@@ -54,6 +57,7 @@ class App extends React.Component {
       </main>
 
       <InviteModal data={this.props.inviteModal} />
+      <ChannelCreateModal data={this.props.channelCreateModal} />
     </div>
   }
 }

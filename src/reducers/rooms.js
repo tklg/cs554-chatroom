@@ -35,7 +35,8 @@ const initialState = {
   invites: [{
     id: '0',
     slug: 'abcdef',
-    name: 'private channel'
+    name: 'private channel',
+    info: '2 members'
   }]
 }
 

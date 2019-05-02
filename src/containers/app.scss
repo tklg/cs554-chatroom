@@ -3,6 +3,21 @@
 .app {
   overflow: hidden;
 
+  .connection-issue {
+    height: 0;
+    overflow: hidden;
+    line-height: 30px;
+    background: $red;
+    color: $white-1;
+    text-align: center;
+    transition: height .3s $transition;
+    user-select: none;
+
+    &.active {
+      height: 30px;
+    }
+  }
+
   & > header {
     height: 50px;
     line-height: 50px;
@@ -37,18 +52,6 @@
         path {
           fill: $white-3;
         }
-      }
-    }
-    .connection {
-      display: inline-block;
-      margin: 20px;
-      height: 10px;
-      width: 10px;
-      border-radius: 50%;
-      background: $green;
-
-      &.red {
-        background: $red;
       }
     }
   }

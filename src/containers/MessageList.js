@@ -23,7 +23,14 @@ moment.fn.fromNowOrDate = function (x) {
 class MessageList extends React.Component {
   constructor () {
     super()
+    this.listRef = React.createRef()
     this.getMessage = this.getMessage.bind(this)
+  }
+  componentDidUpdate (prevProps, prevState) {
+    if (this.props.messages.length !== prevProps.messages.length) {
+      this.listRef.current.scrollToRow(this.props.messages.length)
+      this.listRef.current.recomputeRowHeights(this.props.messages.length)
+    }
   }
   getMessage ({ index, key, style, parent }) {
     const message = this.props.messages[index]
@@ -42,6 +49,7 @@ class MessageList extends React.Component {
       <AutoSizer>
         {({ height, width }) => (
           <List
+            ref={this.listRef}
             height={height}
             width={width}
             deferredMeasurementCache={cache}

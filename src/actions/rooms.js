@@ -1,5 +1,5 @@
 import Ajax from '../lib/Ajax'
-import { setWorking } from './index'
+import { setWorking, setValue } from './index'
 import { push } from 'connected-react-router'
 
 let u = window.location.origin
@@ -52,6 +52,28 @@ export const acceptInvite = (slug) => async (dispatch, getState) => {
       data: channel
     })
     dispatch(push(channel.id))
+  } catch (e) {
+
+  } finally {
+    dispatch(setWorking(false))
+  }
+}
+
+export const createChannel = name => async (dispatch, getState) => {
+  try {
+    dispatch(setWorking(true))
+    const channel = await Ajax.post(getUrl(`channels`), {
+      data: {
+        name
+      }
+    })
+
+    dispatch({
+      type: 'ADD_CHANNEL',
+      data: channel
+    })
+    dispatch(push(channel.id))
+    dispatch(setValue('channelCreateModal', null))
   } catch (e) {
 
   } finally {

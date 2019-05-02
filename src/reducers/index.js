@@ -16,7 +16,8 @@ function app (state = {
     members: false
   },
   activeChannel: '',
-  inviteModal: null
+  inviteModal: null,
+  channelCreateModal: null
 }, { type, data }) {
   switch (type) {
     case 'SET_WORKING':
