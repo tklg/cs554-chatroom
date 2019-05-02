@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized'
 import moment from 'moment'
 import Message from './Message'
+import { fetchUser } from '../actions/rooms.js'
 
 import './messagelist.scss'
 
@@ -64,13 +65,13 @@ const mapStateToProps = ({ rooms, user, router }, dispatch) => {
       } else { // add message from other user to list
         const item = {
           ...x,
-          user: user.users[x.user] || { name: 'loading...' },
+          user: user.users.find(y => y.id === x.user) || { name: 'loading...' },
           userID: x.user,
           timestamp: moment(x.timestamp).fromNowOrDate(),
           messages: [x.content]
         }
         delete item.content
-        // if (!user.users[x.user]) dispatch(fetchUser(x.user))
+        if (!user.users[x.user]) dispatch(fetchUser(x.user))
         a.push(item)
       }
       return a

@@ -2,6 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import MessageList from './MessageList'
+import { sendMessage } from '../actions'
 
 import './channel.scss'
 
@@ -11,17 +12,25 @@ class Channel extends React.Component {
     this.state = {}
 
     this.setValue = this.setValue.bind(this)
+    this.send = this.send.bind(this)
   }
   setValue (str) {
     this.setState({
       [this.props.activeChannel]: str
     })
   }
+  send (e) {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      e.preventDefault()
+      this.props.dispatch(sendMessage(this.props.activeChannel, this.state[this.props.activeChannel]))
+      this.setValue('')
+    }
+  }
   render () {
     return <div className='channel flex flex-container flex-vertical'>
       <MessageList />
       <footer className='channel-footer'>
-        <form>
+        <form onKeyDown={this.send}>
           <textarea value={this.state[this.props.activeChannel] || ''} onChange={e => this.setValue(e.target.value)} />
           <button type='submit' className='hidden' />
         </form>

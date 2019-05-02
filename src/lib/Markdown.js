@@ -109,26 +109,6 @@ function buildParser (dispatch, members, channels, roles, emojis) {
     }
   }
 
-  // maybe have this parsed by the Message instead and added to the end after the content
-  // so the invite can be loaded in the Message's state
-  const inviteRule = {
-    order: 1,
-    match (source) {
-      return /^((?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/.{6})/.exec(source)
-    },
-    parse (capture, parse, state) {
-      return {
-        content: [capture[1]]
-      }
-    },
-    react (node, output, state) {
-      return <div className='invite' key={state.key}>
-        <h1>Invite to #privatechannel</h1>
-        <a href={node.content}>{node.content}</a>
-      </div>
-    }
-  }
-
   const defaultRules = SimpleMarkdown.defaultRules
   for (const rule of ['heading', 'nptable', 'lheading', 'hr', 'blockQuote', 'list', 'def', 'table', 'image', 'reflink', 'refimage']) {
     delete defaultRules[rule]
@@ -139,8 +119,7 @@ function buildParser (dispatch, members, channels, roles, emojis) {
     link: linkRule,
     codeblock: codeblockRule,
     member: memberRule,
-    channel: channelRule,
-    invite: inviteRule
+    channel: channelRule
   }
 
   const rawParser = SimpleMarkdown.parserFor(rules)

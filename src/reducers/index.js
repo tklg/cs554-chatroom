@@ -8,7 +8,13 @@ import login from './login'
 
 function app (state = {
   working: false,
-  connected: false
+  connected: false,
+  load: {
+    user: true,
+    channels: false,
+    messages: false,
+    members: false
+  }
 }, { type, data }) {
   switch (type) {
     case 'SET_WORKING':
@@ -20,6 +26,17 @@ function app (state = {
       return {
         ...state,
         connected: data || false
+      }
+    case 'FINISH_LOAD':
+      return {
+        ...state,
+        load: {
+          user: false,
+          channels: false,
+          members: false,
+          messages: false,
+          [data]: true
+        }
       }
     default: return state
   }

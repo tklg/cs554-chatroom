@@ -27,11 +27,26 @@ const initialState = {
       timestamp: 1553723762060
     }],
     '1': []
-  }
+  },
+  invites: [{
+    id: '0',
+    slug: 'abcdef',
+    name: 'private channel'
+  }]
 }
 
 export default function (state = initialState, { type, data }) {
   switch (type) {
+    case 'ADD_CHANNEL':
+      return {
+        ...state,
+        channels: [...state.channels].concat([...data])
+      }
+    case 'ADD_INVITE':
+      return {
+        ...state,
+        invites: [...state.invites].concat([...data])
+      }
     default: return state
   }
 }
