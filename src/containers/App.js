@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { connect as connectSocket } from '../actions'
-
+import { Link } from 'react-router-dom'
 import Progress from '../components/Progress'
 import ChannelList from './ChannelList'
 import Channel from './Channel'
@@ -45,7 +45,7 @@ class App extends React.Component {
                 <span className='name'>{this.props.user.name}</span>
                 <a href='/logout'>Log out</a>
               </div>
-              <IconButton icon='settings' />
+              <Link to='/settings'><IconButton icon='settings' /></Link>
             </div>
           </div>
           <Channel />

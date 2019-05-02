@@ -27,7 +27,10 @@ export const connect = () => (dispatch, getState) => {
   })
 
   socket.on('message', (m) => {
-    
+    dispatch({
+      type: 'ADD_MESSAGE',
+      data: m
+    })
   })
 }
 

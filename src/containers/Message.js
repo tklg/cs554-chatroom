@@ -13,11 +13,9 @@ class Message extends React.Component {
     this.state = {
       embeds: []
     }
+    this.updateEmbeds = this.updateEmbeds.bind(this)
   }
-  componentDidMount () {
-    
-  }
-  componentDidUpdate (prevProps, prevState) {
+  updateEmbeds () {
     const embeds = []
     for (const msg of this.props.messages) {
       const match = /(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.exec(msg)
@@ -31,6 +29,15 @@ class Message extends React.Component {
         }
       }
     }
+    return embeds
+  }
+  componentDidMount () {
+    this.setState({
+      embeds: this.updateEmbeds()
+    })
+  }
+  componentDidUpdate (prevProps, prevState) {
+    const embeds = this.updateEmbeds()
     if (prevState.embeds.length !== embeds.length) {
       this.setState({
         embeds

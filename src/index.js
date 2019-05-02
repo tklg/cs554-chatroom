@@ -13,6 +13,7 @@ import reducer from './reducers'
 import App from './containers/App'
 import Login from './containers/Login'
 import Preloader from './components/Preloader'
+import Settings from './containers/Settings'
 import './scss/app.scss'
 
 const history = createBrowserHistory()
@@ -35,6 +36,7 @@ const A = () =>
           <Route path='/login' exact component={Login} />
           <Route path='/' exact component={Preloader} />
           <Route path='/channels/:channel' exact component={App} />
+          <Route path='/settings' exact component={Settings} />
         </Switch>
       </Router>
     </Provider>

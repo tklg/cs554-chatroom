@@ -10,6 +10,11 @@
     box-shadow: $shadow-1;
     z-index: 900;
 
+    .icon {
+      path {
+        fill: $white-2;
+      }
+    }
     h1,
     h2 {
       color: $white-1;
