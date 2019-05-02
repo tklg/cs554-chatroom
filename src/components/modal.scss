@@ -1,0 +1,56 @@
+@import '../scss/vars';
+
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: $black-2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s $transition;
+  z-index: 1000;
+
+  .modal {
+    background: $background-3;
+    padding: 14px 20px;
+    border-radius: 3px;
+    box-shadow: $shadow-2;
+    min-width: 300px;
+    margin-top: 60px;
+    transition: margin-top .3s $transition;
+
+    header {
+      line-height: 30px;
+      margin-bottom: 20px;
+
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
+    & > div {
+      margin-bottom: 20px;
+
+      .underlined-input {
+        margin-top: 0;
+      }
+    }
+    .underlined-input {
+      margin-top: -30px;
+    }
+    footer {
+      .buttons {
+        text-align: right;
+      }
+    }
+  }
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+
+    .modal {
+      margin-top: 0;
+    }
+  }
+}

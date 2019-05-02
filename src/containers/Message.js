@@ -25,7 +25,7 @@ class Message extends React.Component {
         if (!invite) {
           this.props.dispatch(fetchInvite(slug))
         } else {
-          embeds.push(<Invite {...invite} key={invite.id} />)
+          embeds.push(<Invite {...invite} key={invite.id} dispatch={this.props.dispatch} />)
         }
       }
     }

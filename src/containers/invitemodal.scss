@@ -1,0 +1,13 @@
+@import '../scss/vars';
+
+.invite-modal {
+  input {
+    height: 50px;
+    width: 100%;
+    outline: none;
+    font-size: 1.1rem;
+    background: transparent;
+    border: 1px solid $black-3;
+    padding: 0 14px;
+  }
+}

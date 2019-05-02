@@ -1,12 +1,13 @@
 // I pledge my honor that I have abided by the Stevens Honor System
 import React from 'react'
 import { connect } from 'react-redux'
-import { connect as connectSocket } from '../actions'
+import { connect as connectSocket, setValue } from '../actions'
 import { Link } from 'react-router-dom'
 import Progress from '../components/Progress'
 import ChannelList from './ChannelList'
 import Channel from './Channel'
 import IconButton from '../components/IconButton'
+import InviteModal from './InviteModal'
 import Icon from '../components/Icon'
 import './app.scss'
 
@@ -30,7 +31,7 @@ class App extends React.Component {
             <span className='flex'>{activeChannel.name}</span>
           </span>
           <nav>
-            <IconButton icon='account-plus' />
+            <IconButton icon='account-plus' onClick={e => this.props.dispatch(setValue('inviteModal', {}))} />
           </nav>
         </h2>
         <span className={'connection' + (this.props.connected ? '' : ' red')} />
@@ -51,6 +52,8 @@ class App extends React.Component {
           <Channel />
         </div>
       </main>
+
+      <InviteModal data={this.props.inviteModal} />
     </div>
   }
 }

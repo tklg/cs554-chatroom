@@ -16,7 +16,7 @@ function app (state = {
     members: false
   },
   activeChannel: '',
-  newInvite: null
+  inviteModal: null
 }, { type, data }) {
   switch (type) {
     case 'SET_WORKING':
@@ -44,6 +44,11 @@ function app (state = {
           messages: false,
           [data]: true
         }
+      }
+    case 'CREATE_INVITE':
+      return {
+        ...state,
+        inviteModal: data
       }
     default: return state
   }

@@ -3,7 +3,7 @@
 .app {
   overflow: hidden;
 
-  header {
+  & > header {
     height: 50px;
     line-height: 50px;
     background: $accent-1;
