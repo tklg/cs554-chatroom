@@ -1,0 +1,23 @@
+@import '../scss/vars';
+
+.settings {
+  h1 {
+    .icon-button {
+      margin-right: 10px;
+    }
+  }
+  .group {
+    background: $white-1;
+    border-radius: 4px;
+    box-shadow: $shadow-1;
+    padding: 30px 14px;
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto 40px auto;
+
+    .buttons {
+      text-align: right;
+      margin-top: 20px;
+    }
+  }
+}

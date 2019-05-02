@@ -60,7 +60,8 @@ const mapStateToProps = ({ rooms, user, router }, dispatch) => {
     channels: rooms.channels,
     messages: rooms.messages[active].reduce((a, x) => {
       const prev = a[a.length - 1] || {}
-      if (x.user === prev.userID) { // merge messages from same user
+      const match = /(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.exec(prev.content)
+      if (x.user === prev.userID && !match) { // merge messages from same user
         prev.messages.push(x.content)
       } else { // add message from other user to list
         const item = {
@@ -70,7 +71,6 @@ const mapStateToProps = ({ rooms, user, router }, dispatch) => {
           timestamp: moment(x.timestamp).fromNowOrDate(),
           messages: [x.content]
         }
-        delete item.content
         if (!user.users[x.user]) dispatch(fetchUser(x.user))
         a.push(item)
       }

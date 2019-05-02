@@ -25,6 +25,10 @@ const initialState = {
       user: '1',
       content: `test invite to private channel ${window.location.origin}/i/abcdef aaaa`,
       timestamp: 1553723762060
+    }, {
+      user: '1',
+      content: `continued line after embed`,
+      timestamp: 1553623762060
     }],
     '1': []
   },

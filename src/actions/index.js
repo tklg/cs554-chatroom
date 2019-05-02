@@ -39,6 +39,11 @@ export const setWorking = (b) => ({
   data: b
 })
 
+export const setValue = (k, v) => ({
+  type: 'SET_VALUE',
+  data: { key: k, value: v }
+})
+
 export const load = () => async (dispatch, getState) => {
   try {
     dispatch(setWorking(true))

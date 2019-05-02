@@ -31,5 +31,15 @@
         fill: $black-3;
       }
     }
+    .icon-button {
+      height: 30px;
+      width: 30px;
+      line-height: 30px;
+      margin: 5px;
+
+      .icon {
+        margin: 0;
+      }
+    }
   }
 }

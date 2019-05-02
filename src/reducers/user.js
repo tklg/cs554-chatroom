@@ -1,9 +1,7 @@
 const initialState = {
   self: {
     name: 'User 1',
-    email: 'test@test.test',
-    password: '',
-    passwordConfirmation: ''
+    email: 'test@test.test'
   },
   users: [
     {

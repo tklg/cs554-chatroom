@@ -14,13 +14,20 @@ function app (state = {
     channels: false,
     messages: false,
     members: false
-  }
+  },
+  activeChannel: '',
+  newInvite: null
 }, { type, data }) {
   switch (type) {
     case 'SET_WORKING':
       return {
         ...state,
         working: data || !state.working
+      }
+    case 'SET_VALUE':
+      return {
+        ...state,
+        [data.key]: data.value
       }
     case 'CONNECTED':
       return {

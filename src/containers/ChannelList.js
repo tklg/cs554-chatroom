@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { List, AutoSizer } from 'react-virtualized'
 import Icon from '../components/Icon'
+import IconButton from '../components/IconButton'
 
 import './channellist.scss'
 
@@ -17,6 +18,7 @@ class ChannelList extends React.Component {
     return <NavLink to={`/channels/${channel.id}`} className='channel-item flex-container' key={key} style={style}>
       <Icon icon='pound' />
       <span className='flex'>{channel.name}</span>
+      {/* <IconButton icon='add' /> */}
     </NavLink>
   }
   render () {
