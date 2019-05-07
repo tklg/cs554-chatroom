@@ -1,12 +1,11 @@
 // I pledge my honor that I have abided by the Stevens Honor System
 import React from 'react'
 import { connect } from 'react-redux'
-import { connect as connectSocket, setValue } from '../actions'
+import { setValue } from '../actions'
 import Progress from '../components/Progress'
 import UnderlineInput from '../components/UnderlineInput'
 import Icon from '../components/Icon'
 import ChannelCreateModal from './ChannelCreateModal'
-import { push } from 'connected-react-router'
 import './startscreen.scss'
 
 class StartScreen extends React.Component {
@@ -17,12 +16,12 @@ class StartScreen extends React.Component {
     }
     this.setValue = this.setValue.bind(this)
   }
-  setValue (e) {
+  setValue (str) {
     this.setState({
-      invite: e.target.value
+      invite: str
     }, () => {
-      if (/(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.test(e.target.value)) {
-        this.dispatch(push(e.target.value))
+      if (/(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.test(str)) {
+        window.location.href = str
       }
     })
   }
@@ -51,7 +50,7 @@ class StartScreen extends React.Component {
               autoFocus
               placeholder='https://localhost:8081/i/123456'
               value={this.state.invite}
-              onChange={this.setValue} />
+              onChange={e => this.setValue(e.target.value)} />
           </div>
         </div>
       </main>

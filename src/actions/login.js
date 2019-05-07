@@ -30,18 +30,18 @@ export const login = (e) => async (dispatch, getState) => {
   dispatch(clearError())
   try {
     const { loginEmail: email, loginPassword: password } = getState().login
-    const res = await Ajax.post(getUrl('login'), {
+    /* const res = */await Ajax.post(getUrl('login'), {
       data: {
         email,
         password
       }
     })
 
-    console.log(res)
+    /* console.log(res)
     dispatch({
       type: 'SET_USER',
       data: res
-    })
+    }) */
     dispatch(push('/'))
   } catch (e) {
     dispatch(setError({ login: e.toString() }))
@@ -56,7 +56,7 @@ export const register = (e) => async (dispatch, getState) => {
   dispatch(clearError())
   try {
     const { registerEmail: email, registerPassword: password, registerPasswordConfirmation: passwordConfirmation } = getState().login
-    const res = await Ajax.post(getUrl('users'), {
+    /* const res = */await Ajax.post(getUrl('users'), {
       data: {
         email,
         password,
@@ -64,11 +64,11 @@ export const register = (e) => async (dispatch, getState) => {
       }
     })
 
-    console.log(res)
+    /* console.log(res)
     dispatch({
       type: 'SET_USER',
       data: res
-    })
+    }) */
     dispatch(push('/'))
   } catch (e) {
     dispatch(setError({ register: e.toString() }))

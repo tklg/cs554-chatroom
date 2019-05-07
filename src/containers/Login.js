@@ -1,7 +1,7 @@
 // I pledge my honor that I have abided by the Stevens Honor System
 import React from 'react'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 import Progress from '../components/Progress'
 import UnderlineInput from '../components/UnderlineInput'
@@ -10,7 +10,7 @@ import './login.scss'
 
 class Login extends React.Component {
   render () {
-    if (this.props.loggedIn) return <Redirect to='/' />
+    // if (this.props.loggedIn) return <Redirect to='/' />
     return <div className='login flex flex-container flex-center'>
       <div className='view flex-container'>
         <Progress working={this.props.working} />
@@ -69,7 +69,7 @@ class Login extends React.Component {
 const mapStateToProps = ({ app, login, user }) => {
   return {
     ...login,
-    loggedIn: user.self !== null,
+    // loggedIn: user.self !== null,
     working: app.working,
     loginError: login.error.login,
     registerError: login.error.register

@@ -69,7 +69,7 @@ export const load = () => async (dispatch, getState) => {
     }
     dispatch({ type: 'FINISH_LOAD', data: 'channels' })
   } catch (e) {
-
+    dispatch(push('/login'))
   } finally {
     dispatch(setWorking(false))
   }
