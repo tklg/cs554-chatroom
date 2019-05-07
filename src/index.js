@@ -11,6 +11,7 @@ import ErrorBoundary from './ErrorBoundary'
 import reducer from './reducers'
 
 import App from './containers/App'
+import StartScreen from './containers/StartScreen'
 import Login from './containers/Login'
 import Preloader from './components/Preloader'
 import Settings from './containers/Settings'
@@ -35,6 +36,7 @@ const A = () =>
         <Switch>
           <Route path='/login' exact component={Login} />
           <Route path='/' exact component={Preloader} />
+          <Route path='/channels/' exact component={StartScreen} />
           <Route path='/channels/:channel' exact component={App} />
           <Route path='/settings' exact component={Settings} />
         </Switch>

@@ -3,20 +3,16 @@
 import React from 'react'
 import './underlineinput.scss'
 
-const UnderlineInput = props => (
-  <div className={'underlined-input ' + (props.className ? props.className : '')}>
+const UnderlineInput = ({ className, placeholder, pattern, ...props }) => (
+  <div className={'underlined-input ' + (className || '')}>
     <input
-      type={props.type}
-      name={props.name}
-      value={props.value}
-      className={(props.value.length ? 'has-content' : '') + (props.pattern
-        ? (props.value.length && !props.pattern.test(props.value) ? ' invalid' : '')
+      className={(props.value.length ? 'has-content' : '') + (pattern
+        ? (props.value.length && !pattern.test(props.value) ? ' invalid' : '')
         : '')}
       autoComplete='nothing'
-      onChange={props.onChange}
-      onBlur={props.onBlur} />
+      {...props} />
     <div className='reacts-to'>
-      <label className='placeholder'>{props.placeholder}</label>
+      <label className='placeholder'>{placeholder}</label>
       <div className='underline' />
     </div>
   </div>

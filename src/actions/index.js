@@ -64,6 +64,8 @@ export const load = () => async (dispatch, getState) => {
       dispatch({ type: 'ADD_MESSAGE', data: messages })
       dispatch({ type: 'SET_CHANNEL_LOADED', data: firstChannel.id })
       dispatch(push(`/channels/${firstChannel.id}`))
+    } else {
+      dispatch(push(`/channels`))
     }
     dispatch({ type: 'FINISH_LOAD', data: 'channels' })
   } catch (e) {
