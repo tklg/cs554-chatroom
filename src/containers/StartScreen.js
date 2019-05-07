@@ -20,6 +20,10 @@ class StartScreen extends React.Component {
   setValue (e) {
     this.setState({
       invite: e.target.value
+    }, () => {
+      if (/(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.test(e.target.value)) {
+        this.dispatch(push(e.target.value))
+      }
     })
   }
   render () {
