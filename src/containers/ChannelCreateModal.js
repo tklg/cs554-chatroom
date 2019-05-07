@@ -14,12 +14,16 @@ class InviteModal extends React.Component {
     }
     this.close = this.close.bind(this)
     this.update = this.update.bind(this)
+    this.inputRef = React.createRef()
   }
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.data && !this.props.data) {
       this.setState({
         name: ''
       })
+    }
+    if (!prevProps.data && this.props.data) {
+      this.inputRef.current.focus()
     }
   }
   update (e) {
@@ -37,7 +41,7 @@ class InviteModal extends React.Component {
     return <Modal active={this.props.data} className='invite-modal' onClose={this.close} >
       <header className='modal-header'><h1>New channel</h1></header>
       <div className='channel-name'>
-        <UnderlineInput value={this.state.name} onChange={this.update} placeholder='Channel name' />
+        <UnderlineInput iRef={this.inputRef} value={this.state.name} onChange={this.update} placeholder='Channel name' />
       </div>
       <footer>
         <div className='buttons'>

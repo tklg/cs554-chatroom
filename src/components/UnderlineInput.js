@@ -3,9 +3,10 @@
 import React from 'react'
 import './underlineinput.scss'
 
-const UnderlineInput = ({ className, placeholder, pattern, ...props }) => (
+const UnderlineInput = ({ className, placeholder, pattern, iRef, ...props }) => (
   <div className={'underlined-input ' + (className || '')}>
     <input
+      ref={iRef}
       className={(props.value.length ? 'has-content' : '') + (pattern
         ? (props.value.length && !pattern.test(props.value) ? ' invalid' : '')
         : '')}

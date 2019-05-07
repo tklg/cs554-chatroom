@@ -85,9 +85,10 @@ class Settings extends React.Component {
   }
 }
 
-const mapStateToProps = ({ app, user }) => {
+const mapStateToProps = ({ app, user, rooms }) => {
   return {
     ...app,
+    activeChannel: rooms.active,
     user: user.self
   }
 }

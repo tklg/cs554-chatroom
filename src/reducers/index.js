@@ -15,7 +15,6 @@ function app (state = {
     messages: false,
     members: false
   },
-  activeChannel: '',
   inviteModal: null,
   channelCreateModal: null
 }, { type, data }) {

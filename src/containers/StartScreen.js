@@ -49,6 +49,7 @@ class StartScreen extends React.Component {
             <h2>Enter a channel invite</h2>
             <UnderlineInput
               autoFocus
+              placeholder='https://localhost:8081/i/123456'
               value={this.state.invite}
               onChange={this.setValue} />
           </div>

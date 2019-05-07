@@ -3,7 +3,7 @@ const initialState = {
   channels: [{
     id: '0',
     name: 'Channel 1',
-    loaded: false
+    loaded: true
   }, {
     id: '1',
     name: 'Channel 2',
@@ -44,6 +44,11 @@ const initialState = {
 
 export default function (state = initialState, { type, data }) {
   switch (type) {
+    case 'ROOMS_SET_VALUE':
+      return {
+        ...state,
+        [data.key]: data.value
+      }
     case 'ADD_CHANNEL':
       return {
         ...state,

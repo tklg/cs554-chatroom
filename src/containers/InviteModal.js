@@ -9,10 +9,14 @@ class InviteModal extends React.Component {
   constructor () {
     super()
     this.close = this.close.bind(this)
+    this.iRef = React.createRef()
   }
   componentDidUpdate (prevProps) {
     if (this.props.data && !prevProps.data) {
       this.props.dispatch(createInvite(this.props.activeChannel))
+    }
+    if (prevProps.data && this.props.data && this.props.data.url && !prevProps.data.url) {
+      this.iRef.current.select()
     }
   }
   close () {
@@ -22,7 +26,7 @@ class InviteModal extends React.Component {
     return <Modal active={this.props.data} className='invite-modal' onClose={this.close} >
       <header className='modal-header'><h1>New invite</h1></header>
       <div className='invite-link'>
-        <input value={(this.props.data && this.props.data.url) ? this.props.data.url : ''} placeholder='Generating invite...' readOnly onFocus={e => e.target.select()} />
+        <input ref={this.iRef} value={(this.props.data && this.props.data.url) ? this.props.data.url : ''} placeholder='Generating invite...' readOnly onFocus={e => e.target.select()} />
       </div>
       <footer>
         <div className='buttons'>

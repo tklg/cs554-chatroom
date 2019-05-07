@@ -2,8 +2,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import MessageList from './MessageList'
-import { sendMessage, setValue } from '../actions'
-import { loadMessages } from '../actions/rooms'
+import { sendMessage } from '../actions'
+import { loadMessages, setValue } from '../actions/rooms'
 
 import './channel.scss'
 
@@ -16,11 +16,11 @@ class Channel extends React.Component {
     this.send = this.send.bind(this)
   }
   componentDidMount () {
-    this.props.dispatch(setValue('activeChannel', this.props.activeChannel))
+    this.props.dispatch(setValue('active', this.props.activeChannel))
   }
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.activeChannel !== this.props.activeChannel) {
-      this.props.dispatch(setValue('activeChannel', this.props.activeChannel))
+      this.props.dispatch(setValue('active', this.props.activeChannel))
 
       let c
       if ((c = this.props.channels.find(x => x.id === this.props.activeChannel))) {
@@ -45,7 +45,7 @@ class Channel extends React.Component {
       <MessageList />
       <footer className='channel-footer'>
         <form onKeyDown={this.send}>
-          <textarea value={this.state[this.props.activeChannel] || ''} onChange={e => this.setValue(e.target.value)} />
+          <textarea autoFocus value={this.state[this.props.activeChannel] || ''} onChange={e => this.setValue(e.target.value)} />
           <button type='submit' className='hidden' />
         </form>
       </footer>

@@ -1,10 +1,15 @@
 import Ajax from '../lib/Ajax'
-import { setWorking, setValue } from './index'
+import { setWorking, setValue as setValueFromIndex } from './index'
 import { push } from 'connected-react-router'
 
 let u = window.location.origin
 if (/8081/.test(u)) u = u.replace('8081', '3000')
 const getUrl = str => `${u}/api/${str}`
+
+export const setValue = (k, v) => ({
+  type: 'ROOMS_SET_VALUE',
+  data: { key: k, value: v }
+})
 
 export const fetchUser = (id) => async (dispatch, getState) => {
   try {
@@ -73,7 +78,7 @@ export const createChannel = name => async (dispatch, getState) => {
       data: channel
     })
     dispatch(push(channel.id))
-    dispatch(setValue('channelCreateModal', null))
+    dispatch(setValueFromIndex('channelCreateModal', null))
   } catch (e) {
 
   } finally {
