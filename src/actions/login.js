@@ -1,5 +1,6 @@
 import Ajax from '../lib/Ajax'
 import { setWorking } from './index'
+import { push } from 'connected-react-router'
 
 let _url = `${window.location.origin}/api`
 if (window.location.origin.indexOf('localhost') > -1) _url = 'http://localhost:3000/api'
@@ -41,6 +42,7 @@ export const login = (e) => async (dispatch, getState) => {
       type: 'SET_USER',
       data: res
     })
+    dispatch(push('/'))
   } catch (e) {
     dispatch(setError({ login: e.toString() }))
   } finally {
@@ -67,6 +69,7 @@ export const register = (e) => async (dispatch, getState) => {
       type: 'SET_USER',
       data: res
     })
+    dispatch(push('/'))
   } catch (e) {
     dispatch(setError({ register: e.toString() }))
   } finally {

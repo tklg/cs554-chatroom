@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Modal from '../components/Modal'
+import UnderlineInput from '../components/UnderlineInput'
 import { createChannel } from '../actions/rooms'
 import { setValue } from '../actions'
 import './invitemodal.scss'
@@ -36,7 +37,7 @@ class InviteModal extends React.Component {
     return <Modal active={this.props.data} className='invite-modal' onClose={this.close} >
       <header className='modal-header'><h1>New channel</h1></header>
       <div className='channel-name'>
-        <input value={this.state.name} onChange={this.update} placeholder='Channel name' />
+        <UnderlineInput value={this.state.name} onChange={this.update} placeholder='Channel name' />
       </div>
       <footer>
         <div className='buttons'>

@@ -10,13 +10,18 @@ import IconButton from '../components/IconButton'
 import InviteModal from './InviteModal'
 import ChannelCreateModal from './ChannelCreateModal'
 import Icon from '../components/Icon'
+import { push } from 'connected-react-router'
 import './app.scss'
 
 class App extends React.Component {
+  componentWillMount () {
+    if (!this.props.user) this.props.dispatch(push('/'))
+  }
   componentDidMount () {
     if (!this.props.connected) this.props.dispatch(connectSocket())
   }
   render () {
+    if (!this.props.user) return <div />
     const activeChannelID = this.props.match.url.replace('/channels/', '')
     const activeChannel = this.props.channels.find(x => x.id === activeChannelID)
 

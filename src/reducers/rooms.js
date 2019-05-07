@@ -2,10 +2,12 @@ const initialState = {
   // rooms: [],
   channels: [{
     id: '0',
-    name: 'Channel 1'
+    name: 'Channel 1',
+    loaded: false
   }, {
     id: '1',
-    name: 'Channel 2'
+    name: 'Channel 2',
+    loaded: false
   }],
   active: '0',
   messages: {
@@ -53,13 +55,22 @@ export default function (state = initialState, { type, data }) {
         invites: [...state.invites].concat(data instanceof Array ? data : [data])
       }
     case 'ADD_MESSAGE':
-      const newMessages = [...state.messages[data.channel]].concat(data instanceof Array ? data : [data])
+      const id = data instanceof Array ? data[0].channel : data.channel
+      const newMessages = [...state.messages[id]].concat(data instanceof Array ? data : [data])
       return {
         ...state,
         messages: {
           ...state.messages,
-          [data.channel]: newMessages
+          [id]: newMessages
         }
+      }
+    case 'SET_CHANNEL_LOADED':
+      return {
+        ...state,
+        channels: [...state.channels].map(c => {
+          c.loaded = c.id === data
+          return c
+        })
       }
     default: return state
   }

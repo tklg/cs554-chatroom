@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import MessageList from './MessageList'
 import { sendMessage, setValue } from '../actions'
+import { loadMessages } from '../actions/rooms'
 
 import './channel.scss'
 
@@ -20,6 +21,11 @@ class Channel extends React.Component {
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.activeChannel !== this.props.activeChannel) {
       this.props.dispatch(setValue('activeChannel', this.props.activeChannel))
+
+      let c
+      if ((c = this.props.channels.find(x => x.id === this.props.activeChannel))) {
+        this.props.dispatch(loadMessages(c.id))
+      }
     }
   }
   setValue (str) {

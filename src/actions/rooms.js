@@ -80,3 +80,25 @@ export const createChannel = name => async (dispatch, getState) => {
     dispatch(setWorking(false))
   }
 }
+
+export const loadMessages = id => async (dispatch, getState) => {
+  const { rooms } = getState()
+  if (rooms.channels.find(x => x.id === rooms.active).loaded) return
+  try {
+    dispatch(setWorking(true))
+    const messages = await Ajax.get(getUrl(`channels/${id}/messages`))
+
+    dispatch({
+      type: 'ADD_MESSAGE',
+      data: messages
+    })
+    dispatch({
+      type: 'SET_CHANNEL_LOADED',
+      data: id
+    })
+  } catch (e) {
+
+  } finally {
+    dispatch(setWorking(false))
+  }
+}
