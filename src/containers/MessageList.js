@@ -69,7 +69,7 @@ class MessageList extends React.Component {
             rowHeight={cache.rowHeight}
             rowCount={this.props.messages.length}
             rowRenderer={this.getMessage}
-            count={this.props.messageCount} />
+            count={`${this.props.active}-${this.props.messageCount}`} />
         )}
       </AutoSizer>
     </div>
@@ -97,6 +97,7 @@ const mapStateToProps = ({ rooms, user, router }) => {
       }
       return a
     }, []),
+    active,
     users: user.users,
     messageCount: (rooms.messages[active] || []).length
   }

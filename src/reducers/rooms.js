@@ -52,7 +52,13 @@ export default function (state = initialState, { type, data }) {
     case 'ADD_CHANNEL':
       return {
         ...state,
-        channels: [...state.channels, ...(data instanceof Array ? data : [data])]
+        channels: [...state.channels, ...(data instanceof Array ? data.map(x => ({
+          loaded: false,
+          ...x
+        })) : [{
+          loaded: false,
+          ...data
+        }])]
       }
     case 'ADD_INVITE':
       return {
@@ -61,7 +67,7 @@ export default function (state = initialState, { type, data }) {
       }
     case 'ADD_MESSAGE':
       const id = data instanceof Array ? data[0].channel : data.channel
-      const newMessages = [...(state.messages[id] || []), ...(data instanceof Array ? data : [data])]
+      const newMessages = [...(state.messages[id] || []), ...(data instanceof Array ? data : [data])].reduce((a, x) => a.findIndex(y => y.id === x.id) < 0 ? [...a, x] : a, [])
       return {
         ...state,
         messages: {

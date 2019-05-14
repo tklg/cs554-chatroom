@@ -24,7 +24,7 @@ class Channel extends React.Component {
 
       let c
       if ((c = this.props.channels.find(x => x.id === this.props.activeChannel))) {
-        this.props.dispatch(loadMessages(c.id))
+        if (!c.loaded) this.props.dispatch(loadMessages(c.id))
       }
     }
   }
