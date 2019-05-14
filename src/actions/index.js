@@ -65,7 +65,7 @@ export const load = () => async (dispatch, getState) => {
       dispatch({ type: 'ADD_MEMBER', data: members })
 
       const messages = await Ajax.get(getUrl(`channels/${firstChannel.id}/messages`))
-      dispatch({ type: 'ADD_MESSAGE', data: messages })
+      if (messages && messages.length) dispatch({ type: 'ADD_MESSAGE', data: messages })
       dispatch({ type: 'SET_CHANNEL_LOADED', data: firstChannel.id })
       dispatch(push(`/channels/${firstChannel.id}`))
     } else {

@@ -61,7 +61,7 @@ export default function (state = initialState, { type, data }) {
       }
     case 'ADD_MESSAGE':
       const id = data instanceof Array ? data[0].channel : data.channel
-      const newMessages = [...state.messages[id]].concat(data instanceof Array ? data : [data])
+      const newMessages = [...(state.messages[id] || [])].concat(data instanceof Array ? data : [data])
       return {
         ...state,
         messages: {

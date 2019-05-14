@@ -30,6 +30,9 @@ class MessageList extends React.Component {
     if (this.props.messages.length !== prevProps.messages.length) {
       this.listRef.current.scrollToRow(this.props.messages.length)
       this.listRef.current.recomputeRowHeights(this.props.messages.length)
+      for (const x of this.props.messages) {
+        if (!this.props.users[x.user]) this.props.dispatch(fetchUser(x.user))
+      }
     }
   }
   getMessage ({ index, key, style, parent }) {
@@ -62,11 +65,11 @@ class MessageList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ rooms, user, router }, dispatch) => {
+const mapStateToProps = ({ rooms, user, router }) => {
   const active = router.location.pathname.split('/')[2]
   return {
     channels: rooms.channels,
-    messages: rooms.messages[active].reduce((a, x) => {
+    messages: (rooms.messages[active] || []).reduce((a, x) => {
       const prev = a[a.length - 1] || {}
       const match = /(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.exec(prev.content)
       if (x.user === prev.userID && !match) { // merge messages from same user
@@ -79,11 +82,11 @@ const mapStateToProps = ({ rooms, user, router }, dispatch) => {
           timestamp: moment(x.timestamp).fromNowOrDate(),
           messages: [x.content]
         }
-        if (!user.users[x.user]) dispatch(fetchUser(x.user))
         a.push(item)
       }
       return a
-    }, [])
+    }, []),
+    users: user.users
   }
 }
 

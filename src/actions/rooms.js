@@ -56,7 +56,7 @@ export const acceptInvite = (slug) => async (dispatch, getState) => {
       type: 'ADD_CHANNEL',
       data: channel
     })
-    dispatch(push(channel.id))
+    dispatch(push(`/channels/${channel.id}`))
   } catch (e) {
 
   } finally {
@@ -77,7 +77,7 @@ export const createChannel = name => async (dispatch, getState) => {
       type: 'ADD_CHANNEL',
       data: channel
     })
-    dispatch(push(channel.id))
+    dispatch(push(`/channels/${channel.id}`))
     dispatch(setValueFromIndex('channelCreateModal', null))
   } catch (e) {
 
