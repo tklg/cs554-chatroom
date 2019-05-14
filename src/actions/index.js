@@ -13,9 +13,13 @@ export const connect = () => (dispatch, getState) => {
   socket = io.connect(u)
 
   socket.on('connect', () => {
-    dispatch({
-      type: 'CONNECTED',
-      data: true
+    const sessionID = getState().user.self.sessionid
+    console.log(getState().user.self)
+    socket.emit('session.start', sessionID, (err, res) => {
+      dispatch({
+        type: 'CONNECTED',
+        data: true
+      })
     })
   })
 
@@ -47,7 +51,7 @@ export const setValue = (k, v) => ({
 export const load = () => async (dispatch, getState) => {
   try {
     dispatch(setWorking(true))
-    const user = await Ajax.get(getUrl('me'))
+    const user = await Ajax.get(getUrl('users/me'))
     dispatch({ type: 'SET_USER', data: user })
     dispatch({ type: 'FINISH_LOAD', data: 'user' })
 
@@ -69,6 +73,7 @@ export const load = () => async (dispatch, getState) => {
     }
     dispatch({ type: 'FINISH_LOAD', data: 'channels' })
   } catch (e) {
+    console.error(e)
     dispatch(push('/login'))
   } finally {
     dispatch(setWorking(false))
@@ -78,7 +83,7 @@ export const load = () => async (dispatch, getState) => {
 export const saveUser = user => async (dispatch, getState) => {
   try {
     dispatch(setWorking(true))
-    await Ajax.post(getUrl(`me`), {
+    await Ajax.post(getUrl(`users/me`), {
       data: user
     })
   } catch (e) {

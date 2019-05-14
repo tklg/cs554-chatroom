@@ -1,7 +1,8 @@
 // I pledge my honor that I have abided by the Stevens Honor System
 import React from 'react'
 import { connect } from 'react-redux'
-import { setValue } from '../actions'
+import { setValue, connect as connectSocket } from '../actions'
+import { push } from 'connected-react-router'
 import Progress from '../components/Progress'
 import UnderlineInput from '../components/UnderlineInput'
 import Icon from '../components/Icon'
@@ -15,6 +16,12 @@ class StartScreen extends React.Component {
       invite: ''
     }
     this.setValue = this.setValue.bind(this)
+  }
+  componentWillMount () {
+    if (!this.props.user) this.props.dispatch(push('/'))
+  }
+  componentDidMount () {
+    
   }
   setValue (str) {
     this.setState({

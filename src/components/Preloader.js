@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Spinner from './Spinner'
-import { load } from '../actions'
+import { load, connect as connectSocket } from '../actions'
 
 import './preloader.scss'
 
 class Preloader extends React.Component {
   componentDidMount () {
     this.props.dispatch(load())
+    if (!this.props.connected) this.props.dispatch(connectSocket())
   }
   render () {
     // preloader: load all messages, channels, users, then redirect to /channels/[first channel id]
@@ -25,6 +26,7 @@ const mapStateToProps = ({ app }) => {
   let step
   for (const s in app.load) if (app.load[s]) step = s
   return {
+    connected: app.connected,
     loadStep: step
   }
 }

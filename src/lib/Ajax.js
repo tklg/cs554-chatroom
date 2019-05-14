@@ -33,7 +33,7 @@ const Ajax = {
       delete opts.data
     }
     const response = await window.fetch(url, opts)
-    if (!response.ok) throw new Error(response.body)
+    if (!response.ok) throw new Error((await response.json()).hint)
     return response.json()
   }
 }

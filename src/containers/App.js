@@ -18,7 +18,7 @@ class App extends React.Component {
     if (!this.props.user) this.props.dispatch(push('/'))
   }
   componentDidMount () {
-    if (!this.props.connected) this.props.dispatch(connectSocket())
+    
   }
   render () {
     if (!this.props.user) return <div />

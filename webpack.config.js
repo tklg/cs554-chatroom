@@ -12,7 +12,8 @@ module.exports = (env, argv) => {
       app: './src/index.js'
     },
     output: {
-      path: path.join(__dirname, '/public'),
+      //path: path.join(__dirname, '/public'),
+      path: path.join(__dirname, '../chatroom-server/public'),
       filename: '[name].bundle.js',
       publicPath: '/'
     },

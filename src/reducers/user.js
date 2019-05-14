@@ -1,16 +1,13 @@
 const initialState = {
-  self: {
-    name: 'User 1',
-    email: 'test@test.test'
-  },
+  self: null,
   users: [
-    {
+    /*{
       id: '0',
       name: 'User 1'
     }, {
       id: '1',
       name: 'User 2'
-    }
+    }*/
   ]
 }
 

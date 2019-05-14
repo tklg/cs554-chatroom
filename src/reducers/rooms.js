@@ -1,6 +1,6 @@
 const initialState = {
   // rooms: [],
-  channels: [{
+  channels: [/*{
     id: '0',
     name: 'Channel 1',
     loaded: true
@@ -8,10 +8,10 @@ const initialState = {
     id: '1',
     name: 'Channel 2',
     loaded: false
-  }],
+  }*/],
   active: '0',
   messages: {
-    '0': [{
+    /*'0': [{
       user: '1',
       content: 'Test message\n```line\n2```',
       timestamp: 1556727762060
@@ -32,14 +32,14 @@ const initialState = {
       content: `continued line after embed`,
       timestamp: 1553623762060
     }],
-    '1': []
+    '1': []*/
   },
-  invites: [{
+  invites: [/*{
     id: '0',
     slug: 'abcdef',
     name: 'private channel',
     info: '2 members'
-  }]
+  }*/]
 }
 
 export default function (state = initialState, { type, data }) {
