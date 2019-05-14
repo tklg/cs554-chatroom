@@ -51,7 +51,7 @@ class App extends React.Component {
             <ChannelList />
             <div className='user-info flex-container'>
               <div className='flex flex-container flex-vertical'>
-                <span className='name'>{this.props.user.name}</span>
+                <span className='name'>{this.props.user.name || this.props.user.email}</span>
                 <a href='/logout'>Log out</a>
               </div>
               <Link to='/settings'><IconButton icon='settings' /></Link>

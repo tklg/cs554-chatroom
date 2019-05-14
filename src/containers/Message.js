@@ -45,6 +45,9 @@ class Message extends React.Component {
         this.props.measure()
       })
     }
+    if (prevProps.messages.length !== this.props.messages.length) {
+      this.props.measure()
+    }
   }
   render () {
     // call this.props.measure in onLoad of any images

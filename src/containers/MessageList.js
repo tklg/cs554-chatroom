@@ -30,9 +30,19 @@ class MessageList extends React.Component {
     if (this.props.messages.length !== prevProps.messages.length) {
       this.listRef.current.scrollToRow(this.props.messages.length)
       this.listRef.current.recomputeRowHeights(this.props.messages.length)
-      for (const x of this.props.messages) {
-        if (!this.props.users[x.user]) this.props.dispatch(fetchUser(x.user))
+      for (const x of new Set(this.props.messages.map(x => x.user.id))) {
+        if (!this.props.users.find(y => y.id === x)) this.props.dispatch(fetchUser(x))
       }
+    }
+    if (this.props.users.length !== prevProps.users.length) {
+      this.listRef.current.forceUpdateGrid()
+    }
+  }
+  componentDidMount () {
+    this.listRef.current.scrollToRow(this.props.messages.length)
+    this.listRef.current.recomputeRowHeights(this.props.messages.length)
+    for (const x of new Set(this.props.messages.map(x => x.user.id))) {
+      if (!this.props.users.find(y => y.id === x)) this.props.dispatch(fetchUser(x))
     }
   }
   getMessage ({ index, key, style, parent }) {
@@ -58,7 +68,8 @@ class MessageList extends React.Component {
             deferredMeasurementCache={cache}
             rowHeight={cache.rowHeight}
             rowCount={this.props.messages.length}
-            rowRenderer={this.getMessage} />
+            rowRenderer={this.getMessage}
+            count={this.props.messageCount} />
         )}
       </AutoSizer>
     </div>
@@ -77,7 +88,7 @@ const mapStateToProps = ({ rooms, user, router }) => {
       } else { // add message from other user to list
         const item = {
           ...x,
-          user: user.users.find(y => y.id === x.user) || { name: 'loading...' },
+          user: user.users.find(y => y.id === x.user) || { name: 'loading...', id: x.user },
           userID: x.user,
           timestamp: moment(x.timestamp).fromNowOrDate(),
           messages: [x.content]
@@ -86,7 +97,8 @@ const mapStateToProps = ({ rooms, user, router }) => {
       }
       return a
     }, []),
-    users: user.users
+    users: user.users,
+    messageCount: (rooms.messages[active] || []).length
   }
 }
 

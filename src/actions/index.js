@@ -14,7 +14,6 @@ export const connect = () => (dispatch, getState) => {
 
   socket.on('connect', () => {
     const sessionID = getState().user.self.sessionid
-    console.log(getState().user.self)
     socket.emit('session.start', sessionID, (err, res) => {
       dispatch({
         type: 'CONNECTED',
@@ -30,7 +29,7 @@ export const connect = () => (dispatch, getState) => {
     })
   })
 
-  socket.on('message', (m) => {
+  socket.on('message.receive', (m) => {
     dispatch({
       type: 'ADD_MESSAGE',
       data: m

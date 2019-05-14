@@ -14,7 +14,7 @@ export const setValue = (k, v) => ({
 export const fetchUser = (id) => async (dispatch, getState) => {
   try {
     dispatch(setWorking(true))
-    const user = await Ajax.get(getUrl(`members/${id}`))
+    const user = await Ajax.get(getUrl(`users/${id}`))
     dispatch({ type: 'ADD_MEMBER', data: user })
   } catch (e) {
 

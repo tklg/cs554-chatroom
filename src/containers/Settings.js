@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Progress from '../components/Progress'
 import IconButton from '../components/IconButton'
 import UnderlineInput from '../components/UnderlineInput'
+import { push } from 'connected-react-router'
 import { saveUser } from '../actions'
 
 import './settings.scss'
@@ -20,8 +21,12 @@ class Settings extends React.Component {
     }
     this.setValue = this.setValue.bind(this)
   }
+  componentWillMount () {
+    if (!this.props.user) this.props.dispatch(push('/'))
+  }
   componentDidMount () {
-    const { email, name } = this.props.user
+    console.log(this.props.user)
+    const { email, name } = (this.props.user || { email: '', name: '' })
     this.setState({
       email,
       name
