@@ -1,6 +1,9 @@
 @import '../scss/vars';
 
 .settings {
+  overflow-y: auto;
+  overflow-x: hidden;
+
   h1 {
     .icon-button {
       margin-right: 10px;
