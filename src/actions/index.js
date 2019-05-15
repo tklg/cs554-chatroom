@@ -66,7 +66,10 @@ export const load = () => async (dispatch, getState) => {
       const messages = await Ajax.get(getUrl(`channels/${firstChannel.id}/messages`))
       if (messages && messages.length) dispatch({ type: 'ADD_MESSAGE', data: messages })
       dispatch({ type: 'SET_CHANNEL_LOADED', data: firstChannel.id })
-      dispatch(push(`/channels/${firstChannel.id}`))
+
+      let id = firstChannel.id
+      if (sessionStorage.getItem('lastChannel')) id = sessionStorage.getItem('lastChannel')
+      dispatch(push(`/channels/${id}`))
     } else {
       dispatch(push(`/channels`))
     }
@@ -75,6 +78,7 @@ export const load = () => async (dispatch, getState) => {
     dispatch(connect())
   } catch (e) {
     console.error(e)
+    sessionStorage.clear()
     dispatch(push('/login'))
   } finally {
     dispatch(setWorking(false))

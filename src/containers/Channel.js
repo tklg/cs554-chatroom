@@ -17,10 +17,12 @@ class Channel extends React.Component {
   }
   componentDidMount () {
     this.props.dispatch(setValue('active', this.props.activeChannel))
+    sessionStorage.setItem('lastChannel', this.props.activeChannel)
   }
   componentDidUpdate (prevProps, prevState) {
     if (prevProps.activeChannel !== this.props.activeChannel) {
       this.props.dispatch(setValue('active', this.props.activeChannel))
+      sessionStorage.setItem('lastChannel', this.props.activeChannel)
 
       let c
       if ((c = this.props.channels.find(x => x.id === this.props.activeChannel))) {
