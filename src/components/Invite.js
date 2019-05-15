@@ -8,7 +8,8 @@ const Invite = props => (
       <h1 className='flex'>{`#${props.name}`}</h1>
       <span className='channel-info'>{props.info}</span>
     </div>
-    <button className='btn' onClick={e => props.dispatch(acceptInvite(props.slug))}>Join</button>
+    {props.joined && <button disabled className='btn'>Joined</button>}
+    {!props.joined && <button className='btn' onClick={e => props.dispatch(acceptInvite(props.slug))}>Join</button>}
   </div>
 )
 

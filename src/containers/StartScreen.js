@@ -27,7 +27,7 @@ class StartScreen extends React.Component {
     this.setState({
       invite: str
     }, () => {
-      if (/(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.test(str)) {
+      if (/(?:https?:\/\/)?(?:www\.)?localhost:3000\/i\/(.{6})/.test(str)) {
         window.location.href = str
       }
     })
@@ -55,7 +55,7 @@ class StartScreen extends React.Component {
             <h2>Enter a channel invite</h2>
             <UnderlineInput
               autoFocus
-              placeholder='https://localhost:8081/i/123456'
+              placeholder='https://localhost:3000/i/123456'
               value={this.state.invite}
               onChange={e => this.setValue(e.target.value)} />
           </div>

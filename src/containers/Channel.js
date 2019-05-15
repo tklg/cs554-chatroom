@@ -36,7 +36,9 @@ class Channel extends React.Component {
   send (e) {
     if (e.keyCode === 13 && e.shiftKey === false) {
       e.preventDefault()
-      this.props.dispatch(sendMessage(this.props.activeChannel, this.state[this.props.activeChannel]))
+      if (this.state[this.props.activeChannel].trim().length) {
+        this.props.dispatch(sendMessage(this.props.activeChannel, this.state[this.props.activeChannel]))
+      }
       this.setValue('')
     }
   }

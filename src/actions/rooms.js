@@ -23,10 +23,10 @@ export const fetchUser = (id) => async (dispatch, getState) => {
   }
 }
 
-export const fetchInvite = (id) => async (dispatch, getState) => {
+export const fetchInvite = (slug) => async (dispatch, getState) => {
   try {
     dispatch(setWorking(true))
-    const invite = await Ajax.get(getUrl(`invite/${id}`))
+    const invite = await Ajax.get(getUrl(`invites/${slug}`))
     dispatch({ type: 'ADD_INVITE', data: invite })
   } catch (e) {
 
@@ -38,7 +38,7 @@ export const fetchInvite = (id) => async (dispatch, getState) => {
 export const createInvite = (id) => async (dispatch, getState) => {
   try {
     dispatch(setWorking(true))
-    const invite = await Ajax.post(getUrl(`invite/${id}`))
+    const invite = await Ajax.post(getUrl(`invites/${id}`))
     dispatch({ type: 'CREATE_INVITE', data: invite })
   } catch (e) {
 
@@ -50,7 +50,7 @@ export const createInvite = (id) => async (dispatch, getState) => {
 export const acceptInvite = (slug) => async (dispatch, getState) => {
   try {
     dispatch(setWorking(true))
-    const channel = await Ajax.post(getUrl(`invite/${slug}/accept`))
+    const channel = await Ajax.post(getUrl(`invites/${slug}/accept`))
 
     dispatch({
       type: 'ADD_CHANNEL',

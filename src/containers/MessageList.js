@@ -27,11 +27,13 @@ class MessageList extends React.Component {
     this.getMessage = this.getMessage.bind(this)
   }
   componentDidUpdate (prevProps, prevState) {
-    if (this.props.messages.length !== prevProps.messages.length) {
+    if (this.props.messageCount !== prevProps.messageCount) {
       this.listRef.current.scrollToRow(this.props.messages.length)
       this.listRef.current.recomputeRowHeights(this.props.messages.length)
       for (const x of new Set(this.props.messages.map(x => x.user.id))) {
-        if (!this.props.users.find(y => y.id === x)) this.props.dispatch(fetchUser(x))
+        if (!this.props.users.find(y => y.id === x)) {
+          this.props.dispatch(fetchUser(x))
+        }
       }
     }
     if (this.props.users.length !== prevProps.users.length) {
@@ -39,11 +41,15 @@ class MessageList extends React.Component {
     }
   }
   componentDidMount () {
-    this.listRef.current.scrollToRow(this.props.messages.length)
-    this.listRef.current.recomputeRowHeights(this.props.messages.length)
     for (const x of new Set(this.props.messages.map(x => x.user.id))) {
-      if (!this.props.users.find(y => y.id === x)) this.props.dispatch(fetchUser(x))
+      if (!this.props.users.find(y => y.id === x)) {
+        this.props.dispatch(fetchUser(x))
+      }
     }
+    setTimeout(() => {
+      this.listRef.current.scrollToRow(this.props.messages.length)
+      this.listRef.current.recomputeRowHeights(this.props.messages.length)
+    }, 100)
   }
   getMessage ({ index, key, style, parent }) {
     const message = this.props.messages[index]
@@ -82,7 +88,7 @@ const mapStateToProps = ({ rooms, user, router }) => {
     channels: rooms.channels,
     messages: (rooms.messages[active] || []).reduce((a, x) => {
       const prev = a[a.length - 1] || {}
-      const match = /(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.exec(prev.content)
+      const match = /(?:https?:\/\/)?(?:www\.)?localhost:3000\/i\/(.{6})/.exec(prev.content)
       if (x.user === prev.userID && !match) { // merge messages from same user
         prev.messages.push(x.content)
       } else { // add message from other user to list

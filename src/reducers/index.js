@@ -7,7 +7,7 @@ import rooms from './rooms'
 import login from './login'
 
 function app (state = {
-  working: false,
+  working: 0,
   connected: false,
   load: {
     user: true,
@@ -22,7 +22,7 @@ function app (state = {
     case 'SET_WORKING':
       return {
         ...state,
-        working: data || !state.working
+        working: data ? state.working + 1 : state.working - 1
       }
     case 'SET_VALUE':
       return {

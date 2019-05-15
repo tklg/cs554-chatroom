@@ -71,6 +71,8 @@ export const load = () => async (dispatch, getState) => {
       dispatch(push(`/channels`))
     }
     dispatch({ type: 'FINISH_LOAD', data: 'channels' })
+
+    dispatch(connect())
   } catch (e) {
     console.error(e)
     dispatch(push('/login'))

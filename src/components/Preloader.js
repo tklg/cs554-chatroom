@@ -8,7 +8,7 @@ import './preloader.scss'
 class Preloader extends React.Component {
   componentDidMount () {
     this.props.dispatch(load())
-    if (!this.props.connected) this.props.dispatch(connectSocket())
+    // if (!this.props.connected) this.props.dispatch(connectSocket())
   }
   render () {
     // preloader: load all messages, channels, users, then redirect to /channels/[first channel id]

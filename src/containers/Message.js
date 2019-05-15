@@ -7,6 +7,8 @@ import { fetchInvite } from '../actions/rooms'
 
 import './message.scss'
 
+const fetching = new Map()
+
 class Message extends React.Component {
   constructor () {
     super()
@@ -18,12 +20,15 @@ class Message extends React.Component {
   updateEmbeds () {
     const embeds = []
     for (const msg of this.props.messages) {
-      const match = /(?:https?:\/\/)?(?:www\.)?localhost:8081\/i\/(.{6})/.exec(msg)
+      const match = /(?:https?:\/\/)?(?:www\.)?localhost:3000\/i\/(.{6})/.exec(msg)
       if (match) {
         const slug = match[1]
         const invite = this.props.invites.find(x => x.slug === slug)
         if (!invite) {
-          this.props.dispatch(fetchInvite(slug))
+          if (!fetching.has(slug)) {
+            fetching.set(slug, true)
+            this.props.dispatch(fetchInvite(slug))
+          }
         } else {
           embeds.push(<Invite {...invite} key={invite.id} dispatch={this.props.dispatch} />)
         }
