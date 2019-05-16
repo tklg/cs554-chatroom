@@ -8,7 +8,7 @@ import login from './login'
 
 function app (state = {
   working: 0,
-  connected: false,
+  connected: true,
   load: {
     user: true,
     channels: false,
