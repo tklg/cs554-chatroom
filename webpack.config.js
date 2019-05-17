@@ -40,7 +40,7 @@ module.exports = (env, argv) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'src/views/app.html'),
-        filename: path.join(__dirname, '/public/index.html'),
+        filename: path.join(__dirname, '../chatroom-server/public/index.html'),
         chunks: ['app'],
         hash: true
       }),
