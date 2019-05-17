@@ -60,15 +60,17 @@ export const load = () => async (dispatch, getState) => {
 
     const firstChannel = channels[0]
     if (firstChannel) {
-      const members = await Ajax.get(getUrl(`channels/${firstChannel.id}/members`))
+      let id = firstChannel.id
+      let lid
+      if ((lid = sessionStorage.getItem('lastChannel')) && channels.find(x => x.id === lid)) id = lid
+
+      const members = await Ajax.get(getUrl(`channels/${id}/members`))
       dispatch({ type: 'ADD_MEMBER', data: members })
 
-      const messages = await Ajax.get(getUrl(`channels/${firstChannel.id}/messages`))
+      const messages = await Ajax.get(getUrl(`channels/${id}/messages`))
       if (messages && messages.length) dispatch({ type: 'ADD_MESSAGE', data: messages })
-      dispatch({ type: 'SET_CHANNEL_LOADED', data: firstChannel.id })
+      dispatch({ type: 'SET_CHANNEL_LOADED', data: id })
 
-      let id = firstChannel.id
-      if (sessionStorage.getItem('lastChannel')) id = sessionStorage.getItem('lastChannel')
       dispatch(push(`/channels/${id}`))
     } else {
       dispatch(push(`/channels`))
